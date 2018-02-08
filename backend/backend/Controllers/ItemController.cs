@@ -28,10 +28,48 @@ namespace backend.Controllers
         }
         // GET: /
         [HttpGet]
-        public IEnumerable<Item> Get()
+        public IEnumerable<Item> Get([FromQuery] string type, [FromQuery] int? page, [FromQuery] string name, [FromQuery] string manufacturer, [FromQuery] int? minprice, [FromQuery] int? maxprice)
         {
-            //TODO use query params as filter
-            return _context.Items.ToList();
+            // get the list of items
+            var list = _context.Items.ToList();
+
+            // filter by type, non case sensitive
+            if(type != null)
+            {
+                list = list.Where(i => i.Type.ToUpper().Contains(type.ToUpper())).ToList();
+            }
+
+            // filter by name, non case sensitive
+            if (name != null)
+            {
+                list = list.Where(i => i.Name.ToUpper().Contains(name.ToUpper())).ToList();
+            }
+
+            // filter by manufacturer, non case sensitive
+            if (manufacturer != null)
+            {
+                list = list.Where(i => i.Manufacturer.ToUpper().Contains(manufacturer.ToUpper())).ToList();
+            }
+
+            // filter by minprice
+            if(minprice != null)
+            {
+                list = list.Where(i => i.Price >= minprice).ToList();
+            }
+
+            // filter by maxprice
+            if (maxprice != null)
+            {
+                list = list.Where(i => i.Price <= maxprice).ToList();
+            }
+            
+            // pagination, starts from 1
+            // 1 page = 5 item
+            int pageLength = 5;
+            if (page == null || page < 1) page = 1;
+            list = list.Skip(((int)page - 1) * pageLength).Take(pageLength).ToList();
+
+            return list;
         }
 
         // GET /{id}
