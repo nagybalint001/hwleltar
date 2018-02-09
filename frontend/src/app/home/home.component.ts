@@ -37,13 +37,14 @@ export class HomeComponent implements OnInit {
     //this.itemService.getItem(2).subscribe(item => console.log(item));
   }
 
-  viewDetails(id) {
-    console.log(id);
+  viewDetails(id: number) {
     this.router.navigate([this.params.type+'/'+id+'/details']);
   }
 
-  deleteItem(id){
-    console.log("TODO: delete")
+  deleteItem(id: number){
+    this.itemService.deleteItem(id).subscribe(x => {
+      this.getItems(); //refresh
+    });
   }
 
 }
