@@ -3,10 +3,10 @@
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
-        <a [class.active]="params.type == 'vga'" class="nav-link" href="/vga">VGA</a>
+        <a [class.active]="params.type == 'vga'" class="nav-link" routerLink="/vga">VGA</a>
       </li>
       <li class="nav-item">
-        <a [class.active]="params.type == 'cpu'" class="nav-link" href="/cpu">Processzor</a>
+        <a [class.active]="params.type == 'cpu'" class="nav-link" routerLink="/cpu">Processzor</a>
       </li>
     </ul>
   </div>

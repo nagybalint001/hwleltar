@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { ItemService } from '../item.service';
 import { Item } from '../item';
 
@@ -20,6 +20,12 @@ export class HomeComponent implements OnInit {
     this.route.queryParams.subscribe(res => {
       Object.assign(this.params, res);
     }); 
+
+    this.router.events.subscribe(event => {
+      if(event instanceof NavigationEnd){
+        this.getItems();
+      }
+    });
   }
 
   ngOnInit() {
