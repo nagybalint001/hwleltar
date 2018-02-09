@@ -6,10 +6,15 @@ import { DetailsComponent } from './details/details.component';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'vga',
+    pathMatch: 'full'
+  },
+  {
+    path: ':type',
     component: HomeComponent
   },
   {
-    path: 'details',
+    path: ':type/:id/details',
     component: DetailsComponent
   }
 ];

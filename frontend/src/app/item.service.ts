@@ -12,8 +12,13 @@ export class ItemService {
   constructor(
     private http: HttpClient) { }
 
-  getItems() : Observable<Item[]> {
-    return this.http.get<Item[]>(this.itemsUrl)
+  queryUrl(base:string, params):string{
+    base += '?' + Object.keys(params).map(x => x+"="+params[x]).join('&');
+    return base;
+  }
+
+  getItems(params) : Observable<Item[]> {
+    return this.http.get<Item[]>(this.queryUrl(this.itemsUrl, params))
       .pipe(
         catchError(this.handleError('getItems', []))
       );

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
+import { ItemService } from '../item.service';
+import { Item } from '../item';
 
 @Component({
   selector: 'app-details',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
+  params: {type:string, id:number};
+  item: Item;
 
-  constructor() { }
+  constructor(private itemService: ItemService, private route: ActivatedRoute) {
+    this.route.params.subscribe(res => { this.params = {type:res.type, id:res.id}});
+  }
 
   ngOnInit() {
+    this.itemService.getItem(this.params.id).subscribe(item => this.item = item);
   }
 
 }
