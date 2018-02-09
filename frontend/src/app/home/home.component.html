@@ -1,3 +1,127 @@
-<p>
-  home works!
-</p>
+<h3 class="mt-3">Hardware típusok</h3>
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="/vga">VGA</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/cpu">Processzor</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body container">
+    <div class="form-container">
+      <div class="form-row">
+        <div class="form-group input-group col">
+          <input type="text" class="form-control" id="inputName" placeholder="Név">
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="button">?</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-sm-3">
+          <select id="inputManufacturer" class="form-control">
+            <option selected disabled>Gyártó</option>
+            <option>Intel</option>
+            <option>Asus</option>
+            <option>Gigabyte</option>
+          </select>
+        </div>
+        <div class="spacer col-sm-1">
+        </div>
+        <div class="form-group col-sm-3">
+          <input type="number" class="form-control" id="inputMinPrice" placeholder="Minimum ár">
+        </div>
+        <div class="form-group col-sm-3">
+          <input type="number" class="form-control" id="inputMaxPrice" placeholder="Maximum ár">
+        </div>
+        <div class="form-group col-sm-2">
+          <input type="button" class="form-control btn btn-primary" id="filterButton" value="Szűrés">
+        </div>
+      </div>
+    </div>
+
+    <div class="table-container mt-5">
+      <table class="table table-bordered">
+        <thead class="bg-primary">
+          <tr class="row">
+            <th class="col-sm-3">Név</th>
+            <th class="col-sm-3">Gyártó</th>
+            <th class="col-sm-3">Ár</th>
+            <th class="col-sm-3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row">
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3">
+              <button class="btn btn-primary">Részletek</button>
+              <button class="btn btn-danger">Törlés</button>
+            </td>
+          </tr>
+          <tr class="row">
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3">
+              <button class="btn btn-primary">Részletek</button>
+              <button class="btn btn-danger">Törlés</button>
+            </td>
+          </tr>
+          <tr class="row">
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3">
+              <button class="btn btn-primary">Részletek</button>
+              <button class="btn btn-danger">Törlés</button>
+            </td>
+          </tr>
+          <tr class="row">
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3">
+              <button class="btn btn-primary">Részletek</button>
+              <button class="btn btn-danger">Törlés</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row col-sm-12 pl-0 pr-0">
+        <nav class="col-sm-9 pl-0 pr-0">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item active">
+              <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">2</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">3</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="col-sm-3 float-right pl-0 pr-0">
+          <button class="btn btn-primary btn-block">Új</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

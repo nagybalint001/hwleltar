@@ -1,0 +1,56 @@
+$blue-color: #0085e4;
+
+.card {
+    border: 0;
+}
+
+.card-body {
+    border: 1px solid rgba(0,0,0,.125);
+    border-top: 8px solid $blue-color;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+}
+
+.card-header {
+    background-color: #ffffff;
+    border: 0;
+}
+
+.nav-tabs .nav-link {
+    border: 1px solid $blue-color; 
+    margin-left: 3px;
+    color: #000000;
+    /*border-color: #dee2e6 #dee2e6 #fff;*/
+}
+
+.nav-tabs .nav-link.active {
+    color: #ffffff;
+    background-color: $blue-color;
+}
+
+.form-container {
+    border: 1px solid $blue-color; 
+    padding: 20px;
+}
+
+.table-container thead {
+    color: #ffffff;
+}
+
+
+.table-bordered, .table-bordered td {
+    /*border-color: #000000;*/
+    border: 1px solid #000000;
+}
+.table-bordered th {
+    border-color: $blue-color;
+    border: 1px;
+}
+
+table.table {
+    border: 0;
+}
+
+.card .row, table .row {
+    margin:0;
+} 
