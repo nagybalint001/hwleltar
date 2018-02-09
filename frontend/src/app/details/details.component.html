@@ -7,9 +7,9 @@
   </div>
   <div class="col-md-8">
     <form action="">
-      <input value="{{ item.name }}" class="form-control m-2" type="text" placeholder="Név *">
-      <input value="{{ item.price }}" class="form-control m-2" type="text" placeholder="Ár *">
-      <input value="{{ item.manufacturer }}" class="form-control m-2" type="text" placeholder="Gyártó *">
+      <input [value]="item?.name" class="form-control m-2" type="text" placeholder="Név *">
+      <input [value]="item?.price" class="form-control m-2" type="text" placeholder="Ár *">
+      <input [value]="item?.manufacturer" class="form-control m-2" type="text" placeholder="Gyártó *">
       <input class="form-control m-2" type="text" placeholder="spec1">
       <input class="form-control m-2" type="text" placeholder="spec2">
       <div class="col-md-6 row float-right">

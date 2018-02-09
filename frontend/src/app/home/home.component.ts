@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import { ItemService } from '../item.service';
 import { Item } from '../item';
 
@@ -30,6 +31,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getItems();
+  }
+  onSubmit(form:NgForm){
+    this.router.navigate([this.params.type], {queryParams:form.value});
   }
 
   getItems() : void {
