@@ -54,10 +54,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let number of [0,1,2,3,4]" class="row">
-            <td class="col-sm-3"></td>
-            <td class="col-sm-3"></td>
-            <td class="col-sm-3"></td>
+          <tr *ngFor="let item of items" class="row">
+            <td class="col-sm-3">{{ item.name }}</td>
+            <td class="col-sm-3">{{ item.manufacturer }}</td>
+            <td class="col-sm-3">{{ item.price }}</td>
             <td class="col-sm-3">
               <button class="btn btn-primary">Részletek</button>
               <button class="btn btn-danger">Törlés</button>
