@@ -13,7 +13,7 @@ namespace backend.Controllers
         private readonly ItemContext _context;
 
         // 1 page = 5 item
-        private readonly int pageLength = 2;
+        private readonly int pageLength = 1;
 
         public ItemController(ItemContext context)
         {
