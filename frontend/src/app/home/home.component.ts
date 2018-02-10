@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   constructor(private itemService: ItemService, private route:ActivatedRoute, private router:Router) {
     this.params = {};
     this.route.params.subscribe(res => {
-      this.params.type = res.type;
+      this.params = {type: res.type};
     });
     this.route.queryParams.subscribe(res => {
       Object.assign(this.params, res);
