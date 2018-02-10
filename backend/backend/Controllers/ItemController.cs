@@ -29,15 +29,14 @@ namespace backend.Controllers
                 _context.SaveChanges();
             }
         }
-        // GET: /
-        [HttpGet]
-        public IEnumerable<Item> Get([FromQuery] string type, [FromQuery] int? page, [FromQuery] string name, [FromQuery] string manufacturer, [FromQuery] int? minprice, [FromQuery] int? maxprice)
+
+        private List<Item> filterList(string type, string name, string manufacturer, int? minprice, int? maxprice)
         {
             // get the list of items
             var list = _context.Items.ToList();
 
             // filter by type, non case sensitive
-            if(type != null)
+            if (type != null)
             {
                 list = list.Where(i => i.Type.ToUpper().Contains(type.ToUpper())).ToList();
             }
@@ -55,7 +54,7 @@ namespace backend.Controllers
             }
 
             // filter by minprice
-            if(minprice != null)
+            if (minprice != null)
             {
                 list = list.Where(i => i.Price >= minprice).ToList();
             }
@@ -65,6 +64,16 @@ namespace backend.Controllers
             {
                 list = list.Where(i => i.Price <= maxprice).ToList();
             }
+
+            return list;
+        }
+
+        // GET: /
+        [HttpGet]
+        public IEnumerable<Item> Get([FromQuery] string type, [FromQuery] int? page, [FromQuery] string name, [FromQuery] string manufacturer, [FromQuery] int? minprice, [FromQuery] int? maxprice)
+        {
+            // get the list of items
+            var list = filterList(type, name, manufacturer, minprice, maxprice);
             
             // pagination, starts from 1
             if (page == null || page < 1) page = 1;
@@ -141,17 +150,19 @@ namespace backend.Controllers
         }
 
         // GET: /pages/{type}
-        [HttpGet("/pages/{type}")]
-        public int GetPages(string type)
+        [HttpGet("/pages")]
+        public int GetPages([FromQuery] string type, [FromQuery] string name, [FromQuery] string manufacturer, [FromQuery] int? minprice, [FromQuery] int? maxprice)
         {
-            return Convert.ToInt32(Math.Ceiling((double)_context.Items.Where(i => i.Type.ToUpper().Contains(type.ToUpper())).Count() / pageLength));
+            var list = filterList(type, name, manufacturer, minprice, maxprice);
+            return Convert.ToInt32(Math.Ceiling((double)list.Count() / pageLength));
         }
 
-        // GET: /manufacturers/{type}
-        [HttpGet("/manufacturers/{type}")]
-        public IEnumerable<string> GetManufacturers(string type)
+        // GET: /manufacturers
+        [HttpGet("/manufacturers")]
+        public IEnumerable<string> GetManufacturers([FromQuery] string type, [FromQuery] string name, [FromQuery] string manufacturer, [FromQuery] int? minprice, [FromQuery] int? maxprice)
         {
-            return _context.Items.Where(i => i.Type.ToUpper().Contains(type.ToUpper())).Select(i => i.Manufacturer).Distinct().ToList();
+            var list = filterList(type, name, manufacturer, minprice, maxprice);
+            return list.Select(i => i.Manufacturer).Distinct().ToList();
         }
     }
 }
