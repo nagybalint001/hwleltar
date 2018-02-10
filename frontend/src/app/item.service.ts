@@ -38,6 +38,14 @@ export class ItemService {
     );
   }
 
+  updateItem(id: number, data: Item, succ: Function): Observable<any> {
+    const url = `${this.itemsUrl}/${id}`;
+    return this.http.put(url, data).pipe(
+      tap(_ => succ()),
+      catchError(this.handleError<Item>(`updateItem id=${id}`))
+    );
+  }
+
   getPages(params) : Observable<number> {
     return this.http.get<number>(this.queryUrl(this.itemsUrl + "/pages", params))
       .pipe(

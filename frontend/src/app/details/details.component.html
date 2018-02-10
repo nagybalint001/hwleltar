@@ -1,4 +1,4 @@
-<div class="row mt-3">
+<div *ngIf="!!item" class="row mt-3">
   <div class="col-md-4">
     <img class="details-img col-12" src="http://via.placeholder.com/300x300" />
     <div class="my-3 col-8 mx-auto">
@@ -6,12 +6,13 @@
     </div>
   </div>
   <div class="col-md-8">
-    <form action="">
-      <input [value]="item?.name" class="form-control m-2" type="text" placeholder="Név *">
-      <input [value]="item?.price" class="form-control m-2" type="text" placeholder="Ár *">
-      <input [value]="item?.manufacturer" class="form-control m-2" type="text" placeholder="Gyártó *">
-      <input class="form-control m-2" type="text" placeholder="spec1">
-      <input class="form-control m-2" type="text" placeholder="spec2">
+    <form action="" #detailsForm="ngForm" (ngSubmit)="onSubmit(item.id, detailsForm.value)">
+      <input name="id" [(ngModel)]="item.id" type="text" hidden>
+      <input name="type" [(ngModel)]="item.type" type="text" hidden>
+      <input name="name" [(ngModel)]="item.name" class="form-control m-2" type="text" placeholder="Név *">
+      <input name="price" [(ngModel)]="item.price" class="form-control m-2" type="number" placeholder="Ár *">
+      <input name="manufacturer" [(ngModel)]="item.manufacturer" class="form-control m-2" type="text" placeholder="Gyártó *">
+      <input name="extras" [(ngModel)]="item.extras" class="form-control m-2" type="text" placeholder="extras">
       <div class="col-md-6 row float-right">
         <div class="col-6">
           <button (click)="onCancel()" class="btn btn-danger btn-block">Mégse</button>

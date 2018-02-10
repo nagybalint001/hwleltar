@@ -33,4 +33,8 @@ export class DetailsComponent implements OnInit {
     this.location.back();
   }
 
+  onSubmit(id, data){
+    this.itemService.updateItem(id, data, () => this.location.back()).subscribe();
+  }
+
 }
