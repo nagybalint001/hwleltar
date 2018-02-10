@@ -98,7 +98,7 @@ namespace backend.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Item item)
         {
-            if(item == null)
+            if(item == null || item.Manufacturer == null || item.Manufacturer.Equals("") || item.Name == null || item.Name.Equals("") || item.Type == null || item.Price == null)
             {
                 return BadRequest();
             }
@@ -112,7 +112,7 @@ namespace backend.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Item item)
         {
-            if (item == null || item.Id != id)
+            if (item == null || item.Id != id || item.Manufacturer == null || item.Manufacturer.Equals("") || item.Name == null || item.Name.Equals("") || item.Type == null || item.Price == null)
             {
                 return BadRequest();
             }

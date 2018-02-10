@@ -11,7 +11,7 @@ namespace backend.Models
         public string Name { get; set; }
         public string Type { get; set; }
         public string Manufacturer { get; set; }
-        public int Price { get; set; }
+        public int? Price { get; set; }
         public string Extras { get; set; }
     }
 }
