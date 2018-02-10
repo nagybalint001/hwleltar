@@ -21,10 +21,10 @@ namespace backend.Controllers
 
             if(_context.Items.Count() == 0)
             {
-                _context.Items.Add(new Item { Manufacturer = "Intel", Type = "CPU", Name = "Intel Core i5 8600K 3.6GHz", Price = 81990 });
-                _context.Items.Add(new Item { Manufacturer = "Intel", Type = "CPU", Name = "Intel Core i7 8700K 3.7GHz", Price = 115710 });
-                _context.Items.Add(new Item { Manufacturer = "Gigabyte", Type = "VGA", Name = "GeForce GTX1050 Ti 4GB Gigabyte GV-N105TOC-4GD ", Price = 63950 });
-                _context.Items.Add(new Item { Manufacturer = "ASUS", Type = "VGA", Name = "GeForce GTX1080 8GB ASUS ROG-POSEIDON-GTX1080TI-P11G-GAMING", Price = 305880 });
+                _context.Items.Add(new Item { Manufacturer = "Intel", Type = "CPU", Name = "Core i5 8600K", Price = 81990, Extras = @"{""socket"": ""LGA 1151"", ""threads"": 6, ""frequency"": 3.6}"});
+                _context.Items.Add(new Item { Manufacturer = "Intel", Type = "CPU", Name = "Core i7 8700K", Price = 115710, Extras = @"{""socket"": ""LGA 1151"", ""threads"": 12, ""frequency"": 3.7}"});
+                _context.Items.Add(new Item { Manufacturer = "Gigabyte", Type = "VGA", Name = "GeForce GTX1050 Ti GV-N105TOC-4GD ", Price = 63950, Extras = @"{""memorytype"": ""GDDR5"", ""memory"": 4, ""displayport"": true}"});
+                _context.Items.Add(new Item { Manufacturer = "ASUS", Type = "VGA", Name = "GeForce GTX1080 ROG-POSEIDON-GTX1080TI-P11G-GAMING", Price = 305880, Extras = @"{""memorytype"": ""GDDR5X"", ""memory"": 8, ""displayport"": true}"});
 
                 _context.SaveChanges();
             }
