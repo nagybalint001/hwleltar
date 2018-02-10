@@ -12,6 +12,9 @@ namespace backend.Controllers
     {
         private readonly ItemContext _context;
 
+        // 1 page = 5 item
+        private readonly int pageLength = 2;
+
         public ItemController(ItemContext context)
         {
             _context = context;
@@ -64,8 +67,6 @@ namespace backend.Controllers
             }
             
             // pagination, starts from 1
-            // 1 page = 5 item
-            int pageLength = 5;
             if (page == null || page < 1) page = 1;
             list = list.Skip(((int)page - 1) * pageLength).Take(pageLength).ToList();
 
@@ -117,6 +118,7 @@ namespace backend.Controllers
             dbItem.Name = item.Name;
             dbItem.Price = item.Price;
             dbItem.Type = item.Type;
+            dbItem.Extras = item.Extras;
 
             _context.Items.Update(dbItem);
             _context.SaveChanges();
@@ -136,6 +138,20 @@ namespace backend.Controllers
             _context.Items.Remove(item);
             _context.SaveChanges();
             return new NoContentResult();
+        }
+
+        // GET: /pages/{type}
+        [HttpGet("/pages/{type}")]
+        public int GetPages(string type)
+        {
+            return Convert.ToInt32(Math.Ceiling((double)_context.Items.Where(i => i.Type.ToUpper().Contains(type.ToUpper())).Count() / pageLength));
+        }
+
+        // GET: /manufacturers/{type}
+        [HttpGet("/manufacturers/{type}")]
+        public IEnumerable<string> GetManufacturers(string type)
+        {
+            return _context.Items.Where(i => i.Type.ToUpper().Contains(type.ToUpper())).Select(i => i.Manufacturer).Distinct().ToList();
         }
     }
 }
