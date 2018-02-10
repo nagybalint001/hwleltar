@@ -2,7 +2,7 @@
   <div class="col-md-4">
     <img class="details-img col-12" src="http://via.placeholder.com/300x300" />
     <div class="my-3 col-8 mx-auto">
-      <button class="btn btn-primary btn-block">Feltöltés</button>
+      <button (click)="uploadImage()" class="btn btn-primary btn-block">Feltöltés</button>
     </div>
   </div>
   <div class="col-md-8">
@@ -14,7 +14,7 @@
       <input class="form-control m-2" type="text" placeholder="spec2">
       <div class="col-md-6 row float-right">
         <div class="col-6">
-          <button class="btn btn-danger btn-block">Mégse</button>
+          <button (click)="onCancel()" class="btn btn-danger btn-block">Mégse</button>
         </div>
         <div class="col-6">
           <button class="btn btn-primary btn-block">Mentés</button>

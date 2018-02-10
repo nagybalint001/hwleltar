@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { Location } from '@angular/common';
+import { Router, ActivatedRoute} from '@angular/router';
 import { ItemService } from '../item.service';
 import { Item } from '../item';
 
@@ -12,12 +13,24 @@ export class DetailsComponent implements OnInit {
   params: {type:string, id:number};
   item: Item;
 
-  constructor(private itemService: ItemService, private route: ActivatedRoute) {
+  constructor(
+    private itemService: ItemService,
+    private route: ActivatedRoute,
+    private router:Router,
+    private location:Location) {
     this.route.params.subscribe(res => { this.params = {type:res.type, id:res.id}});
   }
 
   ngOnInit() {
     this.itemService.getItem(this.params.id).subscribe(item => this.item = item);
+  }
+
+  uploadImage(){
+    alert("Not Implemented!");
+  }
+
+  onCancel(){
+    this.location.back();
   }
 
 }

@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
     this.getItems();
   }
   onSubmit(form:NgForm){
-    this.router.navigate([this.params.type], {queryParams:form.value});
+    this.router.navigate([], {queryParams:form.value, relativeTo:this.route});
   }
 
   getItems() : void {
@@ -42,13 +42,15 @@ export class HomeComponent implements OnInit {
   }
 
   viewDetails(id: number) {
-    this.router.navigate([this.params.type+'/'+id+'/details']);
+    this.router.navigate([id, 'details'],{relativeTo: this.route});
   }
 
   deleteItem(id: number){
-    this.itemService.deleteItem(id).subscribe(x => {
-      this.getItems(); //refresh
-    });
+    if(confirm("Biztosan törli?")){
+      this.itemService.deleteItem(id).subscribe(x => {
+        this.getItems(); //refresh
+      });
+    }
   }
 
 }
