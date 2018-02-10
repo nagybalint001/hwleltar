@@ -14,7 +14,11 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: ':type/:id/details',
+    path: ':type/details',
+    component: DetailsComponent
+  },
+  {
+    path: ':type/details/:id',
     component: DetailsComponent
   }
 ];

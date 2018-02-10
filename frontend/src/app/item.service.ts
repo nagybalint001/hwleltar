@@ -46,6 +46,13 @@ export class ItemService {
     );
   }
 
+  createItem(data: Item, succ: Function): Observable<Item> {
+    return this.http.post<Item>(this.itemsUrl, data).pipe(
+      tap(_ => succ()),
+      catchError(this.handleError<Item>('createItem'))
+    );
+  }
+
   getPages(params) : Observable<number> {
     return this.http.get<number>(this.queryUrl(this.itemsUrl + "/pages", params))
       .pipe(

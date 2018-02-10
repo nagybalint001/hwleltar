@@ -7,7 +7,7 @@
   </div>
   <div class="col-md-8">
     <form action="" #detailsForm="ngForm" (ngSubmit)="onSubmit(item.id, detailsForm.value)">
-      <input name="id" [(ngModel)]="item.id" type="text" hidden>
+      <input name="id" [(ngModel)]="item.id" type="number" hidden>
       <input name="type" [(ngModel)]="item.type" type="text" hidden>
       <input name="name" [(ngModel)]="item.name" class="form-control m-2" type="text" placeholder="Név *">
       <input name="price" [(ngModel)]="item.price" class="form-control m-2" type="number" placeholder="Ár *">

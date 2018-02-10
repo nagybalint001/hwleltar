@@ -22,7 +22,12 @@ export class DetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.itemService.getItem(this.params.id).subscribe(item => this.item = item);
+    if(this.params.id){
+      this.itemService.getItem(this.params.id).subscribe(item => this.item = item);
+    } else {
+      this.item = new Item();
+      this.item.type = this.params.type;
+    }
   }
 
   uploadImage(){
@@ -34,7 +39,11 @@ export class DetailsComponent implements OnInit {
   }
 
   onSubmit(id, data){
-    this.itemService.updateItem(id, data, () => this.location.back()).subscribe();
+    if(id){
+      this.itemService.updateItem(id, data, () => this.location.back()).subscribe();
+    } else {
+      this.itemService.createItem(data, () => this.location.back()).subscribe();
+    }
   }
 
 }

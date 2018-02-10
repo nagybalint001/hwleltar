@@ -46,7 +46,11 @@ export class HomeComponent implements OnInit {
   }
 
   viewDetails(id: number) {
-    this.router.navigate([id, 'details'],{relativeTo: this.route});
+    this.router.navigate(['details', id],{relativeTo: this.route});
+  }
+
+  newItem(){
+    this.router.navigate(['details'],{relativeTo: this.route});
   }
 
   deleteItem(id: number){
@@ -56,6 +60,7 @@ export class HomeComponent implements OnInit {
       });
     }
   }
+
 
   changePage(p: number) : void {
     if(p >= 1 && p <= this.pages ) {
