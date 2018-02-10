@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
 import { ItemService } from './item.service';
+import { TimesPipe } from './times.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DetailsComponent
+    DetailsComponent,
+    TimesPipe
   ],
   imports: [
     BrowserModule,

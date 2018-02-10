@@ -12,9 +12,12 @@ import { Item } from '../item';
 export class HomeComponent implements OnInit {
   params: any;
   items: Item[];
+  manufacturers: string[];
+  pages: number;
 
   constructor(private itemService: ItemService, private route:ActivatedRoute, private router:Router) {
     this.params = {};
+    this.params.page = 1;
     this.route.params.subscribe(res => {
       this.params = {type: res.type};
     });
@@ -38,7 +41,8 @@ export class HomeComponent implements OnInit {
 
   getItems() : void {
     this.itemService.getItems(this.params).subscribe(items => this.items = items);
-    //this.itemService.getItem(2).subscribe(item => console.log(item));
+    this.itemService.getPages(this.params).subscribe(pages => this.pages = pages);
+    this.itemService.getManufacturers(this.params).subscribe(manufacturers => this.manufacturers = manufacturers);
   }
 
   viewDetails(id: number) {
@@ -50,6 +54,19 @@ export class HomeComponent implements OnInit {
       this.itemService.deleteItem(id).subscribe(x => {
         this.getItems(); //refresh
       });
+    }
+  }
+
+  changePage(p: number) : void {
+    if(p >= 1 && p <= this.pages ) {
+      this.params.page = p;
+      // clone object
+      let actualParams = Object.assign({}, this.params);;
+      delete actualParams.type;
+      this.router.navigate([], {queryParams:actualParams, relativeTo:this.route});
+    }
+    else {
+      console.log("Unknown page number: " + p);
     }
   }
 

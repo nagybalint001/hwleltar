@@ -38,6 +38,20 @@ export class ItemService {
     );
   }
 
+  getPages(params) : Observable<number> {
+    return this.http.get<number>(this.queryUrl(this.itemsUrl + "/pages", params))
+      .pipe(
+        catchError(this.handleError<number>('getPages'))
+      );
+  }
+
+  getManufacturers(params) : Observable<string[]> {
+    return this.http.get<string[]>(this.queryUrl(this.itemsUrl + "/manufacturers", params))
+      .pipe(
+        catchError(this.handleError('getManufacturers', []))
+      );
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
