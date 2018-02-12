@@ -12,7 +12,20 @@
       <input name="name" [(ngModel)]="item.name" class="form-control m-2" type="text" placeholder="Név *">
       <input name="price" [(ngModel)]="item.price" class="form-control m-2" type="number" placeholder="Ár *">
       <input name="manufacturer" [(ngModel)]="item.manufacturer" class="form-control m-2" type="text" placeholder="Gyártó *">
-      <input name="extras" [(ngModel)]="item.extras" class="form-control m-2" type="text" placeholder="extras">
+      <!--<input name="extras" [(ngModel)]="item.extras" class="form-control m-2" type="text" placeholder="extras">-->
+      <div *ngIf="item.type.toUpperCase() == 'VGA'">
+        <input name="memorytype" [(ngModel)]="extras.memorytype" class="form-control m-2" type="text" placeholder="Memória típus">
+        <input name="memory" [(ngModel)]="extras.memory" class="form-control m-2" type="number" placeholder="Memória">
+        <label>
+          Displayport
+          <input name="displayport" [(ngModel)]="extras.displayport" class="form-control m-2" type="checkbox">
+        </label>
+      </div>
+      <div *ngIf="item.type.toUpperCase() == 'CPU'">
+        <input name="socket" [(ngModel)]="extras.socket" class="form-control m-2" type="text" placeholder="Foglalat">
+        <input name="threads" [(ngModel)]="extras.threads" class="form-control m-2" type="number" placeholder="Szálak">
+        <input name="frequency" [(ngModel)]="extras.frequency" class="form-control m-2" type="number" placeholder="Freqvencia">
+      </div>
       <div class="col-md-6 row float-right">
         <div class="col-6">
           <button (click)="onCancel()" class="btn btn-danger btn-block">Mégse</button>
